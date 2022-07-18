@@ -67,3 +67,12 @@ void Cell::setIsPassable(bool newIsPassable)
     isPassable = newIsPassable;
 }
 
+void Cell::addRecordToLog(driveLogRecord record)
+{
+    this->driveLog.push_back(driveLogRecord);
+}
+
+const std::vector<driveLogRecord> &Cell::getDriveLog() const
+{
+    return driveLog;
+}
