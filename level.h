@@ -54,7 +54,7 @@ public:
     std::pair<int,int> getCoordsByCell(Cell *cell);
 
     Cell *getCell(int sectorCoordX, int sectorCoordY);
-    void setCellData(Cell* cell, int xCoord, int yCoord);
+    void setCellData(const Cell* cell, int xCoord, int yCoord);
 
     int getCountM() const;
     void setCountM(int newCountM);
@@ -66,6 +66,8 @@ public:
 
     const std::string &getName() const;
     void setName(const std::string &newName);
+
+    int getCountOfSectors();
 };
 
 #endif // LEVEL_H

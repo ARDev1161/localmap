@@ -2,10 +2,11 @@
 #define CELL_H
 
 #include <vector>
+#include <utility>
 
 typedef unsigned char byte;
 
-struct driveLogVector
+struct driveLogRecord
 {
     float direction; ///< направление движение, в градусах(?)
     float speedAverage; ///< средняя скорость
@@ -22,13 +23,16 @@ class Cell
     int countVisited; ///< Счеткик. Сколько раз робот проехал по клетке.
     float lastVisited; ///< Пока float, потом создать объект(структуру) для формата времени?. Временна'я пометка о последнем Нахождении внутри клетки
 
-    std::vector<driveLogVector> driveLog; ///< Список (прямой аналог vector из С++) объектов, содержащих информацию о проезде ячейки роботом.
+    std::vector<driveLogRecord> driveLog; ///< Список (прямой аналог vector из С++) объектов, содержащих информацию о проезде ячейки роботом.
     // TODO
-    // Итератор
     // Добавление
 
 public:
     Cell();
+    Cell(const Cell &cell);
+    Cell(const Cell &&cell);
+
+    Cell & operator = (const Cell &cell);
 
     bool getIsPassable() const;
     void setIsPassable(bool newIsPassable);
@@ -47,6 +51,8 @@ public:
 
     float getLastVisited() const;
     void setLastVisited(float newLastVisited);
+
+    const std::vector<driveLogRecord> &getDriveLog() const;
 };
 
 #endif // CELL_H+

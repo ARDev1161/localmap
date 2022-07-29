@@ -14,6 +14,9 @@ public:
     LocalMap();
 
     int addLayer(Level *level);
+    int addLayer(std::string name);
+    int addLayer();
+
     int removeLayer(Level *level);
 
     int getLevelNumber(Level *level);

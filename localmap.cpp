@@ -21,6 +21,18 @@ int LocalMap::addLayer(Level *level)
     return 0;
 }
 
+int LocalMap::addLayer(std::string name)
+{
+    Level * level = new Level();
+    level->setName(name);
+    return this->addLayer(level);
+}
+
+int LocalMap::addLayer()
+{
+    return this->addLayer(new Level);
+}
+
 /*!
 Удаляет указатель на объект слоя из индекса
 

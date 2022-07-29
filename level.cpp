@@ -20,9 +20,11 @@ int Level::generateLevel()
     this->countN = settings->getMapSizeY()/settings->getSectorSize();
     this->sectorSize = settings->getSectorSize();
 
+    Cell * tmp = new Cell();
+
     for(int y = 0; y < countN; y++){
         for(int x = 0; x < countM; x++){
-            sectorsMap.insert( std::make_pair( std::make_pair(x, y), nullptr) );
+            sectorsMap.insert( std::make_pair( std::make_pair(x, y), tmp) );
         }
     }
 
@@ -76,7 +78,7 @@ Cell *Level::getCell(int sectorCoordX, int sectorCoordY)
 \param[in] xCoordIn Координата (номер сектора) по оси X
 \param[in] yCoordIn Координата (номер сектора) по оси Y
 */
-void Level::setCellData(Cell *cell, int xCoord, int yCoord)
+void Level::setCellData(const Cell *cell, int xCoord, int yCoord)
 {
     *sectorsMap[std::make_pair(xCoord, yCoord)] = *cell;
 }
@@ -119,5 +121,10 @@ const std::string &Level::getName() const
 void Level::setName(const std::string &newName)
 {
     name = newName;
+}
+
+int Level::getCountOfSectors()
+{
+    return sectorsMap.size();
 }
 

@@ -5,6 +5,49 @@ Cell::Cell()
 
 }
 
+Cell::Cell(const Cell &cell)
+{
+    this->isKnown = cell.isKnown;
+    this->isPassable = cell.isPassable;
+    this->cellType = cell.cellType;
+
+//    this->lastTimeUpdate = cell.lastTimeUpdate;
+//    this->lastVisited = cell.lastVisited;
+//    this->countVisited = cell.countVisited;
+
+    //    this->driveLog = cell.driveLog;
+}
+
+Cell::Cell(const Cell &&cell)
+{
+    this->isKnown = cell.isKnown;
+    this->isPassable = cell.isPassable;
+    this->cellType = cell.cellType;
+
+//    this->lastTimeUpdate = cell.lastTimeUpdate;
+//    this->lastVisited = cell.lastVisited;
+//    this->countVisited = cell.countVisited;
+
+    //    this->driveLog = cell.driveLog;
+}
+
+Cell & Cell::operator =(const Cell &cell)
+{
+    ///< Проверка на самоприсваивание
+    if (&cell == this)
+        return *this;
+
+    isKnown = cell.isKnown;
+    isPassable = cell.isPassable;
+    cellType = cell.cellType;
+
+    lastTimeUpdate = cell.lastTimeUpdate;
+    lastVisited = cell.lastVisited;
+    countVisited = cell.countVisited;
+
+    driveLog = cell.driveLog;
+}
+
 int Cell::getCountVisited() const
 {
     return countVisited;
@@ -67,3 +110,7 @@ void Cell::setIsPassable(bool newIsPassable)
     isPassable = newIsPassable;
 }
 
+const std::vector<driveLogRecord> &Cell::getDriveLog() const
+{
+    return driveLog;
+}
